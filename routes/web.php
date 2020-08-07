@@ -19,6 +19,7 @@ $router->group(['prefix' => 'api'], function () use ($router) {
 
     $router->group(['middleware' => 'auth'], function () use ($router) {
         $router->get('/me','AuthController@me');
+        $router->post('/logout','AuthController@logout');
 
         $router->get('creations', 'CreationsController@index');
     });

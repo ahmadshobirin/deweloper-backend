@@ -63,7 +63,7 @@ class AuthController extends Controller
         if ($userFindEmail) {
             if (Hash::check($request->password, $userFindEmail->password)) {
 
-                $newToken = "Dew" . str_random(40);
+                $newToken = "dew" . str_random(200);
 
                 $userFindEmail->update([
                     'api_token' => $newToken,
@@ -72,7 +72,7 @@ class AuthController extends Controller
 
                 $response = [
                     "status" => 200,
-                    "message" => "Email does not exist!",
+                    "message" => "Success",
                     "data" => [
                         "name" => $userFindEmail->name,
                         "email" => $userFindEmail->email,
@@ -105,6 +105,19 @@ class AuthController extends Controller
             "status" => 200,
             "message" => "success",
             "data" => $user->only('id','email','last_login')
+        ], 200);
+    }
+
+    public function logout()
+    {
+        $user = Auth::user()->update([
+            'api_token' => null
+        ]);
+
+        return response()->json([
+            "status" => 200,
+            "message" => "logout success",
+            "data" => []
         ], 200);
     }
 }
