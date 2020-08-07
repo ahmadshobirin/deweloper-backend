@@ -1,6 +1,9 @@
 <?php
 
 use App\User;
+use App\Creation;
+use Carbon\Carbon;
+use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 
 class AllSeederDatabase extends Seeder
@@ -12,19 +15,24 @@ class AllSeederDatabase extends Seeder
      */
     public function run()
     {
+        //USERS
         User::insert([
             [
-                "name" => "shobirin",
-                "email" => "shobirin@deweloper.com",
-                "password" => app('hash')->make('deweloper'),
-                "created_at" => now()
+                "name"       => "shobirin",
+                "email"      => "shobirin@deweloper.com",
+                "password"   => app('hash')->make('deweloper'),
+                "created_at" => Carbon::now()
             ],
             [
-                "name" => "deweloper",
-                "email" => "deweloper@deweloper.com",
-                "password" => app('hash')->make('deweloper'),
-                "created_at" => now()
+                "name"       => "deweloper",
+                "email"      => "deweloper@deweloper.com",
+                "password"   => app('hash')->make('deweloper'),
+                "created_at" => Carbon::now()
             ],
         ]);
+
+        //Creation
+        factory(Creation::class, 10)->create();
+
     }
 }
