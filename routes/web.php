@@ -12,6 +12,7 @@ $router->get('/', function () use ($router) {
     ], 200);
 });
 
+$router->get('creations', 'CreationsController@index');
 
 $router->group(['prefix' => 'api'], function () use ($router) {
     $router->post('register', 'AuthController@register');
@@ -21,6 +22,6 @@ $router->group(['prefix' => 'api'], function () use ($router) {
         $router->get('/me','AuthController@me');
         $router->post('/logout','AuthController@logout');
 
-        $router->get('creations', 'CreationsController@index');
+        // $router->get('creations', 'CreationsController@index');
     });
 });
